@@ -1,0 +1,14 @@
+[build]
+  cmd = "go run cmd/main.go"
+  bin = "bin"
+  full_bin = "full.bin"
+  incremental = true
+  exclude_dir = ["vendor", "pkg/mod"]
+  include_ext = ["go", "tpl", "tmpl", "html"]
+
+[log]
+  level = "info"
+  time = true
+
+[proxy]
+  enable = true

@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  api:
+    image: golang:1.23.2-bullseye
+    container_name: arduino-monitoring-api-dev
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/pkg/mod
+      - ./air.toml:/app/air.toml
+    command: >
+      bash -c "
+      if [ ! -f go.mod ]; then
+        go mod init arduino-monitoring;
+      fi
+      && go mod tidy
+      && go install github.com/air-verse/air@latest
+      && air"
+
